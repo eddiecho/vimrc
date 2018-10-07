@@ -131,4 +131,5 @@ set tm=500
 " Always show the status line
 set laststatus=2
 
-
+" Allow mouse
+set mouse=a
