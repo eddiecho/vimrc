@@ -3,8 +3,8 @@ call plug#begin('~/.vim/plugged')
 
 " Plugin Manager - plug.vim
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim<Paste> 
-" Reload this file, then do command :PlugInstall 
+"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" Reload this file (:source %), then do :PlugInstall 
 
 
 " Typescript linter
