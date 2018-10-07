@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 " Plugin Manager - plug.vim
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim<Paste> 
-" Reload this file, then do command :PluginInstall 
+" Reload this file, then do command :PlugInstall 
 
 
 " Typescript linter
@@ -17,6 +17,12 @@ Plug 'https://github.com/tpope/vim-surround.git'
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 " Open files with fuzzy match
 Plug 'https://github.com/junegunn/fzf.vim.git'
+" Rust
+Plug 'rust-lang/rust.vim'
+" Syntastic - syntax highlighting
+Plug 'https://github.com/vim-syntastic/syntastic'
+" Code completion
+Plug 'valloric/youcompleteme'
 
 call plug#end()
 
@@ -35,6 +41,11 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Plugin - Surround
 " Change surroundings with 'cs<firstsurround><newsurround>'
 " Delete surroundings with 'ds<delimiter>'
+
+" Plugin - YouCompleteMe
+" There's a lot of config you need to do
+" Make sure you have clang, python-dev, python-dev3 packages
+" Installation guide: https://vimawesome.com/plugin/youcompleteme
 
 " End Plugin specific setup
 
