@@ -10,8 +10,6 @@ call plug#begin('~/.vim/plugged')
 " Typescript linter
 Plug 'https://github.com/mhartington/nvim-typescript.git', {'do': './install.sh'}
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'Shougo/deoplete.nvim'
-Plug 'Shougo/denite.nvim'
 " Filetree
 Plug 'https://github.com/scrooloose/nerdtree.git'
 " Surround
@@ -48,10 +46,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Plugin - YouCompleteMe
 " There's a lot of config you need to do
 " Make sure you have clang, python-dev, python-dev3 packages
+" pip install neovim
 " Installation guide: https://vimawesome.com/plugin/youcompleteme
-
-" Plugin - Typescript
-let g:deoplete#enable_at_startup = 1
 
 " End Plugin specific setup
 
@@ -110,7 +106,7 @@ set smartcase
 " Highlight search results
 set hlsearch
 
-" Wrap search results
+" Incremental search
 set incsearch
 
 " Don't redraw while executing macros
@@ -132,4 +128,7 @@ set tm=500
 set laststatus=2
 
 " Allow mouse
-set mouse=a
+set mouse=r
+
+" Don't run plugins on files larger than NUM megs
+let g:LargeFile = 100
