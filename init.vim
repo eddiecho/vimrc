@@ -8,7 +8,10 @@ call plug#begin('~/.vim/plugged')
 
 
 " Typescript linter
-Plug 'https://github.com/mhartington/nvim-typescript.git'
+Plug 'https://github.com/mhartington/nvim-typescript.git', {'do': './install.sh'}
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/denite.nvim'
 " Filetree
 Plug 'https://github.com/scrooloose/nerdtree.git'
 " Surround
@@ -46,6 +49,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " There's a lot of config you need to do
 " Make sure you have clang, python-dev, python-dev3 packages
 " Installation guide: https://vimawesome.com/plugin/youcompleteme
+
+" Plugin - Typescript
+let g:deoplete#enable_at_startup = 1
 
 " End Plugin specific setup
 
