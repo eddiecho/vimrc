@@ -1,6 +1,12 @@
 " Plugins
 call plug#begin('~/.vim/plugged')
 
+" Plugin Manager - plug.vim
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim<Paste> 
+" Reload this file, then do command :PluginInstall 
+
+
 " Typescript linter
 Plug 'https://github.com/mhartington/nvim-typescript.git'
 " Filetree
@@ -14,6 +20,23 @@ Plug 'https://github.com/junegunn/fzf.vim.git'
 
 call plug#end()
 
+" Plugin specific setup
+
+" Plugin - NERDTree 
+" Open using Ctrl+n
+map <C-m> :NERDTreeToggle<CR>
+
+" Actually close vim
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Plugin - Multiple cursors
+" Use visual mode, then Ctrl+n to create multiple cursors
+
+" Plugin - Surround
+" Change surroundings with 'cs<firstsurround><newsurround>'
+" Delete surroundings with 'ds<delimiter>'
+
+" End Plugin specific setup
 
 " Line numbers on the left
 set number
