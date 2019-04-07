@@ -20,8 +20,6 @@ Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 Plug 'https://github.com/junegunn/fzf.vim.git'
 " Rust
 Plug 'rust-lang/rust.vim'
-" Syntastic - syntax highlighting
-Plug 'https://github.com/vim-syntastic/syntastic'
 " Code completion
 Plug 'valloric/youcompleteme'
 
@@ -30,8 +28,10 @@ call plug#end()
 " Plugin specific setup
 
 " Plugin - NERDTree 
-" Open using Ctrl+n
+" Open using Ctrl+m
 map <C-m> :NERDTreeToggle<CR>
+" <Leader> == \
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
 " Actually close vim
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -48,8 +48,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Make sure you have clang, python-dev, python-dev3 packages
 " pip install neovim
 " Installation guide: https://vimawesome.com/plugin/youcompleteme
+" Rust installation guide: https://www.danirod.es/blog/2016/rust-autocompletion-on-vim
 
 " End Plugin specific setup
+
+" Map "kj" to esc
+imap kj <Esc>  
 
 " Line numbers on the left
 set number
@@ -65,6 +69,7 @@ set ai
 set si
 set wrap
 
+set showcmd     " show last command entered 
 set history=500
 set encoding=utf-8
 
@@ -132,3 +137,35 @@ set mouse=r
 
 " Don't run plugins on files larger than NUM megs
 let g:LargeFile = 100
+
+" highlight current line
+set cursorline
+
+" folding blocks
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set foldmethod=indent
+" space open closes folds
+nnoremap <space> za 
+
+" move vertically by visual line, so if a line gets wrapped the 2nd part
+" doesn't get skipped
+nnoremap j gj
+nnoremap k gk
+
+" Split window aliases
+" Shift + Left move to left window
+nnoremap <S-Left> <C-w>h
+nnoremap <S-Right> <C-w>l
+nnoremap <S-Up> <C-w>k
+nnoremap <S-Down> <C-w>j
+
+" Ctrl + left and right for tab navigation
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap <C-w> :tabclose<CR>
+
+" I typo this all the time
+cnoreabbrev W w
+cnoreabbrev Wq wq
