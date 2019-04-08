@@ -6,7 +6,6 @@ call plug#begin('~/.vim/plugged')
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 " Reload this file (:source %), then do :PlugInstall 
 
-
 " Typescript linter
 Plug 'https://github.com/mhartington/nvim-typescript.git', {'do': './install.sh'}
 Plug 'HerringtonDarkholme/yats.vim'
@@ -28,6 +27,10 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'vim-airline/vim-airline'
 " Show lines edited since last git commit + stuff
 Plug 'airblade/vim-gitgutter'
+" show indentation levels
+Plug 'nathanaelkane/vim-indent-guides'
+" Auto complete quotes, parens, brackets, etc
+Plug 'Raimondi/delimitMate'
 
 call plug#end()
 
@@ -41,6 +44,9 @@ nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
 " Actually close vim
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" open on start
+au VimEnter * NERDTree
 
 " Plugin - Multiple cursors
 " Use visual mode, then Ctrl+n to create multiple cursors
@@ -56,7 +62,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Installation guide: https://vimawesome.com/plugin/youcompleteme
 " Rust installation guide: https://www.danirod.es/blog/2016/rust-autocompletion-on-
 " Make Ctrl+b (IntelliJ default) be the go to hotkey
-nnoremap <C-b> :YcmCompleter GoTo<CR>
+nnoremap <C-t> :YcmCompleter GoTo<CR>
 
 let g:ycm_register_as_syntastic_checker = 1
 let g:Show_diagnostics_ui = 1
@@ -73,6 +79,11 @@ let g:ycm_collect_identifiers_from_tags_files = 0
 let g:ycm_server_use_vim_stdout = 0
 let g:ycm_server_log_level = 'info'
 
+if !exists("g:ycm_semantic_triggers")
+    let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers['typescript'] = ['.']
+
 " GitGutter
 if exists('&signcolumn')
     set signcolumn=yes
@@ -82,6 +93,11 @@ endif
 
 " Airline
 let g:airline#extensions#tabline#enabled = 1
+
+" IndentGuides
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
 
 " End Plugin specific setup
 
@@ -116,9 +132,6 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" :W sudo saves the file
-command W w !sudo tee % > /dev/null
-
 " Auto completion, see :help wildmenu, :help wildmode
 set wildmenu
 set wildmode=list:longest,full
@@ -128,7 +141,7 @@ set wildignore=*.o,*~,*.pyc,*git\*,*/.git/*,*/.DS_Store
 set ruler
 
 " Height of the command bar
-set cmdheight=2
+set cmdheight=1
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -175,6 +188,9 @@ let g:LargeFile = 100
 " highlight current line
 set cursorline
 
+set splitright
+set splitbelow
+
 " folding blocks
 set foldenable
 set foldlevelstart=10
@@ -187,6 +203,8 @@ nnoremap <space> za
 " doesn't get skipped
 nnoremap j gj
 nnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
 
 " Split window aliases
 " Shift + Left move to left window
