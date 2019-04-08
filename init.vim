@@ -16,7 +16,7 @@ Plug 'https://github.com/tpope/vim-surround.git'
 " Multiple cursors
 Plug 'https://github.com/terryma/vim-multiple-cursors.git'
 " Open files with fuzzy match
-Plug 'https://github.com/junegunn/fzf.vim.git'
+Plug 'junegunn/fzf', { 'do': './install --all'}
 " Rust
 Plug 'rust-lang/rust.vim'
 " Code completion
@@ -31,6 +31,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'nathanaelkane/vim-indent-guides'
 " Auto complete quotes, parens, brackets, etc
 Plug 'Raimondi/delimitMate'
+" Smart increase visual selection
+Plug 'terryma/vim-expand-region'
 
 call plug#end()
 
@@ -46,7 +48,8 @@ nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " open on start
-au VimEnter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Plugin - Multiple cursors
 " Use visual mode, then Ctrl+n to create multiple cursors
@@ -98,6 +101,13 @@ let g:airline#extensions#tabline#enabled = 1
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
+
+" FuzzyFinder
+nnoremap <C-p> :FZF<CR>
+
+" ExpandRegion
+map K <Plug>(expand_region_expand)
+map J <Plug>(expand_region_shrink)
 
 " End Plugin specific setup
 
