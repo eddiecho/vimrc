@@ -22,6 +22,12 @@ Plug 'https://github.com/junegunn/fzf.vim.git'
 Plug 'rust-lang/rust.vim'
 " Code completion
 Plug 'valloric/youcompleteme'
+" VSCode dark theme for vim
+Plug 'tomasiser/vim-code-dark'
+" Make the status and tablines better
+Plug 'vim-airline/vim-airline'
+" Show lines edited since last git commit + stuff
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -48,7 +54,34 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Make sure you have clang, python-dev, python-dev3 packages
 " pip install neovim
 " Installation guide: https://vimawesome.com/plugin/youcompleteme
-" Rust installation guide: https://www.danirod.es/blog/2016/rust-autocompletion-on-vim
+" Rust installation guide: https://www.danirod.es/blog/2016/rust-autocompletion-on-
+" Make Ctrl+b (IntelliJ default) be the go to hotkey
+nnoremap <C-b> :YcmCompleter GoTo<CR>
+
+let g:ycm_register_as_syntastic_checker = 1
+let g:Show_diagnostics_ui = 1
+
+" put icons in the gutter
+let g:ycm_enable_diagnostic_signs = 1
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_always_populate_location_list = 1
+let g:ycm_open_loclist_on_ycm_diags = 1
+
+let g:ycm_complete_in_strings = 1
+let g:ycm_collect_identifiers_from_tags_files = 0
+
+let g:ycm_server_use_vim_stdout = 0
+let g:ycm_server_log_level = 'info'
+
+" GitGutter
+if exists('&signcolumn')
+    set signcolumn=yes
+else
+    let g:gitgutter_sign_column_always = 1
+endif
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1
 
 " End Plugin specific setup
 
@@ -74,7 +107,8 @@ set history=500
 set encoding=utf-8
 
 syntax enable
-colorscheme monokai
+let g:airline_theme = 'codedark'
+colorscheme codedark
 
 filetype plugin on
 filetype indent on
@@ -133,7 +167,7 @@ set tm=500
 set laststatus=2
 
 " Allow mouse
-set mouse=r
+set mouse=a
 
 " Don't run plugins on files larger than NUM megs
 let g:LargeFile = 100
@@ -169,3 +203,4 @@ nnoremap <C-w> :tabclose<CR>
 " I typo this all the time
 cnoreabbrev W w
 cnoreabbrev Wq wq
+cnoreabbrev Q q
