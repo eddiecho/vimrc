@@ -232,3 +232,7 @@ nnoremap <C-w> :tabclose<CR>
 cnoreabbrev W w
 cnoreabbrev Wq wq
 cnoreabbrev Q q
+
+" make find next and find prev center the result
+nnoremap n nzz
+nnoremap N Nzz
