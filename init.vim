@@ -209,6 +209,9 @@ set foldmethod=indent
 " space open closes folds
 nnoremap <space> za 
 
+" Vim's update delay
+set updatetime=100
+
 " move vertically by visual line, so if a line gets wrapped the 2nd part
 " doesn't get skipped
 nnoremap j gj
