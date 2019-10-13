@@ -33,6 +33,8 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Raimondi/delimitMate'
 " Smart increase visual selection
 Plug 'terryma/vim-expand-region'
+" Show which files have been in changed in nerdtree
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 call plug#end()
 
@@ -50,6 +52,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " open on start
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let NERDTreeMinimalUI=1
+let NERDTreeDirArrows=0
+let NERDTreeShowHidden=1
 
 " Plugin - Multiple cursors
 " Use visual mode, then Ctrl+n to create multiple cursors
@@ -205,9 +210,7 @@ set splitbelow
 set foldenable
 set foldlevelstart=10
 set foldnestmax=10
-set foldmethod=indent
-" space open closes folds
-nnoremap <space> za 
+set foldmethod=syntax
 
 " Vim's update delay
 set updatetime=100
@@ -235,7 +238,11 @@ nnoremap <C-w> :tabclose<CR>
 cnoreabbrev W w
 cnoreabbrev Wq wq
 cnoreabbrev Q q
+cnoreabbrev Qa qa
+cnoreabbrev Wqa wqa
 
 " make find next and find prev center the result
 nnoremap n nzz
 nnoremap N Nzz
+
+set encoding=utf-8
