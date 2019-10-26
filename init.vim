@@ -30,6 +30,8 @@ Plug 'terryma/vim-expand-region'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " Code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Better buffer/tab handling
+Plug 'qpkorr/vim-bufkill'
 
 call plug#end()
 
@@ -239,11 +241,12 @@ nnoremap <S-Down> <C-w>j
 " Ctrl + left and right for tab navigation
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
-nnoremap <C-w> :tabclose<CR>
+nnoremap <A-w> :bd<CR>
 
 " Tab for buffer navigation
 nnoremap <Tab> :bnext<CR>:redraw<CR>:ls<CR>
 nnoremap <S-Tab> :bprevious<CR>:redraw<CR>:ls<CR>
+nnoremap <C-w> :BD<CR>
 
 " I typo this all the time
 cnoreabbrev W w
