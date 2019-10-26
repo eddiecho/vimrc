@@ -241,6 +241,10 @@ nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 nnoremap <C-w> :tabclose<CR>
 
+" Tab for buffer navigation
+nnoremap <Tab> :bnext<CR>:redraw<CR>:ls<CR>
+nnoremap <S-Tab> :bprevious<CR>:redraw<CR>:ls<CR>
+
 " I typo this all the time
 cnoreabbrev W w
 cnoreabbrev Wq wq
