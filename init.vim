@@ -32,6 +32,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Better buffer/tab handling
 Plug 'qpkorr/vim-bufkill'
+" Menu icons - KEEP THIS LAST
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -49,9 +51,11 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " open on start
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-let NERDTreeMinimalUI=1
-let NERDTreeDirArrows=0
-let NERDTreeShowHidden=1
+let g:NERDTreeMinimalUI=1
+let g:NERDTreeDirArrows=0
+let g:NERDTreeShowHidden=1
+let g:NERDTreeDirArrowExpandable = '>'
+let g:NERDTreeDirArrowCollapsible = 'v'
 
 " Plugin - Multiple cursors
 " Use visual mode, then Ctrl+n to create multiple cursors
@@ -259,4 +263,4 @@ cnoreabbrev Wqa wqa
 nnoremap n nzz
 nnoremap N Nzz
 
-set encoding=utf-8
+set encoding=UTF-8
