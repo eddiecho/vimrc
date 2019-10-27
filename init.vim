@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 " Plugin Manager - plug.vim
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-" Reload this file (:source %), then do :PlugInstall 
+" Reload this file (:source %), then do :PlugInstall
 
 " Filetree
 Plug 'scrooloose/nerdtree'
@@ -32,14 +32,14 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Better buffer/tab handling
 Plug 'qpkorr/vim-bufkill'
-" Menu icons - KEEP THIS LAST
+" Menu icons - KEEP THIS LAST - also download the fira code patched font there
 Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
 " Plugin specific setup
 
-" Plugin - NERDTree 
+" Plugin - NERDTree
 " Open using Ctrl+m
 map <C-m> :NERDTreeToggle<CR>
 " <Leader> == \
@@ -112,6 +112,8 @@ if exists('&signcolumn')
 else
     let g:gitgutter_sign_column_always = 1
 endif
+" jump to next hunk = ]c
+" jump to prev hunk = [c
 
 " Plugin - Airline
 let g:airline#extensions#tabline#enabled = 1
@@ -131,7 +133,7 @@ map J <Plug>(expand_region_shrink)
 " End Plugin specific setup
 
 " Map "kj" to esc
-imap kj <Esc>  
+imap kj <Esc>
 
 " Line numbers on the left
 set number
@@ -147,7 +149,8 @@ set ai
 set si
 set wrap
 
-set showcmd     " show last command entered 
+" show last command entered
+set showcmd
 set history=500
 set encoding=utf-8
 
