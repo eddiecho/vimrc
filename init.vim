@@ -61,6 +61,7 @@ let g:NERDTreeDirArrowCollapsible = 'v'
 " Use visual mode, then Ctrl+n to create multiple cursors
 
 " Plugin - Surround
+" Add with 'ys<selection><surround>'
 " Change surroundings with 'cs<firstsurround><newsurround>'
 " Delete surroundings with 'ds<delimiter>'
 
@@ -258,6 +259,10 @@ cnoreabbrev Wq wq
 cnoreabbrev Q q
 cnoreabbrev Qa qa
 cnoreabbrev Wqa wqa
+cmap qw wq
+cmap qwa wqa
+cmap Qw wq
+cmap Qwa wqa
 
 " make find next and find prev center the result
 nnoremap n nzz
