@@ -34,6 +34,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'qpkorr/vim-bufkill'
 " Menu icons - KEEP THIS LAST - also download the fira code patched font there
 Plug 'ryanoasis/vim-devicons'
+" Add pairs of parens, etc automatically without feeling awful
+Plug 'vim-scripts/auto-pairs-gentle'
+
 
 call plug#end()
 
@@ -129,6 +132,9 @@ nnoremap <C-p> :FZF<CR>
 " Plugin - ExpandRegion
 map K <Plug>(expand_region_expand)
 map J <Plug>(expand_region_shrink)
+
+" Plugin - AutoPairsGentle
+let g:AutoPairsUseInsertedCount = 1
 
 " End Plugin specific setup
 
