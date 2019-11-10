@@ -40,6 +40,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'ervandew/supertab'
 " Swap windows
 Plug 'wesQ3/vim-windowswap'
+" Highlight all occurances of current word
+Plug 'RRethy/vim-illuminate'
+"Highlight trailing whitespace
+Plug 'ntpeters/vim-better-whitespace'
+" View tags and LSP symbols in a sidebar
+Plug 'liuchengxu/vista.vim'
+" Change Vim's definition of a word to include snake_case and camelCase
+Plug 'chaoren/vim-wordmotion'
+" Git blame popup
+Plug 'rhysd/git-messenger.vim'
 
 call plug#end()
 
@@ -149,6 +159,22 @@ let g:SuperTabMappingBackward = '<tab>'
 
 " Plugin - WindowSwap
 " Use ]ww to swap window placements
+
+" Plugin - Illuminate
+let g:Illuminate_delay = 150
+let g:Illuminate_highlightUnderCursor = 0
+let g:Illuminate_ftblacklist = ['nerdtree']
+
+" Plugin - Vista
+let g:vista_default_executive = 'coc'
+let g:vista#renderer#enable_icon = 1
+
+function! NearestMethodOrFunction() abort
+    return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+set statusline+=%{NearestMethodOrFunction()}
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 " End Plugin specific setup
 
