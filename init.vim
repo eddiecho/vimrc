@@ -176,6 +176,9 @@ endfunction
 set statusline+=%{NearestMethodOrFunction()}
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
+" Plugin - GitMessenger
+let g:git_messenger_include_diff = 'current'
+
 " End Plugin specific setup
 
 " Map "kj" to esc
