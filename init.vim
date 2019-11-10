@@ -75,8 +75,10 @@ set nobackup
 set nowritebackup
 
 set cmdheight=2
-
 set shortmess+=c
+
+" JSON syntax with comments
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " GoTo defintions, et al
 nmap <silent> gd <Plug>(coc-definition)
