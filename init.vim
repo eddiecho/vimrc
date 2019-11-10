@@ -22,8 +22,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
 " show indentation levels
 Plug 'nathanaelkane/vim-indent-guides'
-" Auto complete quotes, parens, brackets, etc
-Plug 'Raimondi/delimitMate'
 " Smart increase visual selection
 Plug 'terryma/vim-expand-region'
 " Show which files have been in changed in nerdtree
@@ -40,6 +38,8 @@ Plug 'vim-scripts/auto-pairs-gentle'
 Plug 'tpope/vim-fugitive'
 " Use <Tab> to scroll through autocompletion lists
 Plug 'ervandew/supertab'
+" Swap windows
+Plug 'wesQ3/vim-windowswap'
 
 call plug#end()
 
