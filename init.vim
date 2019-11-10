@@ -36,7 +36,10 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'ryanoasis/vim-devicons'
 " Add pairs of parens, etc automatically without feeling awful
 Plug 'vim-scripts/auto-pairs-gentle'
-
+" Some git stuff, I only want it because it makes airline show the branch name
+Plug 'tpope/vim-fugitive'
+" Use <Tab> to scroll through autocompletion lists
+Plug 'ervandew/supertab'
 
 call plug#end()
 
@@ -122,6 +125,8 @@ endif
 
 " Plugin - Airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled = 1
 
 " Plugin - IndentGuides
 let g:indent_guides_enable_on_vim_startup = 1
@@ -137,6 +142,10 @@ map J <Plug>(expand_region_shrink)
 
 " Plugin - AutoPairsGentle
 let g:AutoPairsUseInsertedCount = 1
+
+" Plugin - Supertab
+let g:SuperTabMappingForward = '<s-tab>'
+let g:SuperTabMappingBackward = '<tab>'
 
 " End Plugin specific setup
 
