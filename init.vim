@@ -147,6 +147,9 @@ let g:AutoPairsUseInsertedCount = 1
 let g:SuperTabMappingForward = '<s-tab>'
 let g:SuperTabMappingBackward = '<tab>'
 
+" Plugin - WindowSwap
+" Use ]ww to swap window placements
+
 " End Plugin specific setup
 
 " Map "kj" to esc
