@@ -177,6 +177,7 @@ set statusline+=%{NearestMethodOrFunction()}
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 " Plugin - GitMessenger
+" <Leader>gm to show the blame
 let g:git_messenger_include_diff = 'current'
 
 " End Plugin specific setup
