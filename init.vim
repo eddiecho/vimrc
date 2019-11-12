@@ -8,6 +8,35 @@ call plug#begin('~/.vim/plugged')
 
 " Filetree
 Plug 'scrooloose/nerdtree'
+" Show which files have been in changed in nerdtree
+Plug 'Xuyuanp/nerdtree-git-plugin'
+" Menu icons - KEEP THIS LAST - also download the meslo code patched font there
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" Code completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" View tags and LSP symbols in a sidebar
+Plug 'liuchengxu/vista.vim'
+
+" Make the status and tablines better
+Plug 'vim-airline/vim-airline'
+" Some git stuff, I only want it because it makes airline show the branch name
+Plug 'tpope/vim-fugitive'
+" Show lines edited since last git commit + stuff
+Plug 'airblade/vim-gitgutter'
+" Git blame popup
+Plug 'rhysd/git-messenger.vim'
+" Highlight all occurances of current word
+Plug 'RRethy/vim-illuminate'
+"Highlight trailing whitespace
+Plug 'ntpeters/vim-better-whitespace'
+" show indentation levels
+Plug 'nathanaelkane/vim-indent-guides'
+
+" VSCode dark theme for vim
+Plug 'tomasiser/vim-code-dark'
+
 " Surround
 Plug 'tpope/vim-surround'
 " Multiple cursors
@@ -15,42 +44,18 @@ Plug 'terryma/vim-multiple-cursors'
 " Open files with fuzzy match
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" VSCode dark theme for vim
-Plug 'tomasiser/vim-code-dark'
-" Make the status and tablines better
-Plug 'vim-airline/vim-airline'
-" Show lines edited since last git commit + stuff
-Plug 'airblade/vim-gitgutter'
-" show indentation levels
-Plug 'nathanaelkane/vim-indent-guides'
 " Smart increase visual selection
 Plug 'terryma/vim-expand-region'
-" Show which files have been in changed in nerdtree
-Plug 'Xuyuanp/nerdtree-git-plugin'
-" Code completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Better buffer/tab handling
 Plug 'qpkorr/vim-bufkill'
-" Menu icons - KEEP THIS LAST - also download the fira code patched font there
-Plug 'ryanoasis/vim-devicons'
 " Add pairs of parens, etc automatically without feeling awful
 Plug 'vim-scripts/auto-pairs-gentle'
-" Some git stuff, I only want it because it makes airline show the branch name
-Plug 'tpope/vim-fugitive'
 " Use <Tab> to scroll through autocompletion lists
 Plug 'ervandew/supertab'
 " Swap windows
 Plug 'wesQ3/vim-windowswap'
-" Highlight all occurances of current word
-Plug 'RRethy/vim-illuminate'
-"Highlight trailing whitespace
-Plug 'ntpeters/vim-better-whitespace'
-" View tags and LSP symbols in a sidebar
-Plug 'liuchengxu/vista.vim'
 " Change Vim's definition of a word to include snake_case and camelCase
 Plug 'chaoren/vim-wordmotion'
-" Git blame popup
-Plug 'rhysd/git-messenger.vim'
 
 call plug#end()
 
