@@ -13,7 +13,8 @@ Plug 'tpope/vim-surround'
 " Multiple cursors
 Plug 'terryma/vim-multiple-cursors'
 " Open files with fuzzy match
-Plug 'junegunn/fzf', { 'do': './install --all'}
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 " VSCode dark theme for vim
 Plug 'tomasiser/vim-code-dark'
 " Make the status and tablines better
@@ -52,6 +53,8 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'rhysd/git-messenger.vim'
 
 call plug#end()
+
+set nocompatible
 
 " Plugin specific setup
 
@@ -144,7 +147,12 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
 " Plugin - FuzzyFinder
-nnoremap <C-p> :FZF<CR>
+" nnoremap <C-p> :FZF<CR>
+" fzf file fuzzy search that respects .gitignore
+" If in git directory, show only files that are committed, staged, or
+" unstaged
+" else use regular :Files
+nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
 
 " Plugin - ExpandRegion
 map K <Plug>(expand_region_expand)
