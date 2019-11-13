@@ -36,6 +36,8 @@ Plug 'nathanaelkane/vim-indent-guides'
 
 " VSCode dark theme for vim
 Plug 'tomasiser/vim-code-dark'
+" IntelliJ darcula theme for vim
+Plug 'doums/darcula'
 
 " Surround
 Plug 'tpope/vim-surround'
@@ -218,8 +220,8 @@ set history=500
 set encoding=utf-8
 
 syntax enable
-let g:airline_theme = 'codedark'
-colorscheme codedark
+let g:airline_theme = 'darcula'
+colorscheme darcula
 
 filetype plugin on
 filetype indent on
