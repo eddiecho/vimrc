@@ -38,6 +38,8 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tomasiser/vim-code-dark'
 " IntelliJ darcula theme for vim
 Plug 'doums/darcula'
+" Airline themes - I only use minimalist or bubblegum
+Plug 'vim-airline/vim-airline-themes'
 
 " Surround
 Plug 'tpope/vim-surround'
@@ -218,7 +220,7 @@ set history=500
 set encoding=utf-8
 
 syntax enable
-let g:airline_theme = 'darcula'
+let g:airline_theme = 'minimalist'
 colorscheme darcula
 
 filetype plugin on
