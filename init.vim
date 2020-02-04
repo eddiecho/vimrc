@@ -60,6 +60,10 @@ Plug 'ervandew/supertab'
 Plug 'wesQ3/vim-windowswap'
 " Change Vim's definition of a word to include snake_case and camelCase
 Plug 'chaoren/vim-wordmotion'
+" Highlight yanked text
+Plug 'machakann/vim-highlightedyank'
+" Live preview for search and replace
+Plug 'markonm/traces.vim'
 
 call plug#end()
 
