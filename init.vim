@@ -69,6 +69,8 @@ Plug 'chaoren/vim-wordmotion'
 Plug 'machakann/vim-highlightedyank'
 " Live preview for search and replace
 Plug 'markonm/traces.vim'
+" HTML, JSX tag completion
+Plug 'alvan/vim-closetag'
 
 call plug#end()
 
