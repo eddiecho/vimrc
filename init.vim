@@ -38,8 +38,13 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tomasiser/vim-code-dark'
 " IntelliJ darcula theme for vim
 Plug 'doums/darcula'
+" Monokai theme
+Plug 'ErichDonGubler/vim-sublime-monokai'
+Plug 'crusoexia/vim-monokai'
 " Airline themes - I only use minimalist or bubblegum
 Plug 'vim-airline/vim-airline-themes'
+" Lots of syntax stuff
+Plug 'sheerun/vim-polyglot'
 
 " Surround
 Plug 'tpope/vim-surround'
@@ -225,7 +230,8 @@ set encoding=utf-8
 
 syntax enable
 let g:airline_theme = 'minimalist'
-colorscheme darcula
+colorscheme monokai
+" let g:sublimemonokai_term_italic = 1
 
 filetype plugin on
 filetype indent on
@@ -341,3 +347,7 @@ nnoremap n nzz
 nnoremap N Nzz
 
 set encoding=UTF-8
+
+" save undos
+set undodir=~/.vimdid
+set undofile
