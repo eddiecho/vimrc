@@ -7,17 +7,20 @@ call plug#begin('~/.vim/plugged')
 " Reload this file (:source %), then do :PlugInstall
 
 " Filetree
-Plug 'scrooloose/nerdtree'
+" Plug 'scrooloose/nerdtree'
 " Show which files have been in changed in nerdtree
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 " Menu icons - KEEP THIS LAST - also download the meslo code patched font there
 Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 
 " Code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " View tags and LSP symbols in a sidebar
 Plug 'liuchengxu/vista.vim'
+" C/C++ language server
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 " Make the status and tablines better
 Plug 'vim-airline/vim-airline'
@@ -78,21 +81,26 @@ set nocompatible
 
 " Plugin specific setup
 
+" Plugin - CHADTree
+nnoremap <leader><space> <cmd>CHADopen<cr>
+
 " Plugin - NERDTree
 " Open using Ctrl+m
-map <C-m> :NERDTreeToggle<CR>
+" map <C-m> :NERDTreeToggle<CR>
 " <Leader> == \
-nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+" nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
 " Actually close vim
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " open on start
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-let g:NERDTreeMinimalUI=1
-let g:NERDTreeDirArrows=0
-let g:NERDTreeShowHidden=1
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" let g:NERDTreeMinimalUI=1
+" let g:NERDTreeDirArrows=0
+" let g:NERDTreeShowHidden=1
+" let g:NERDTreeGitStatusWithFlags=1
+" let g:NERDTreeIgnore = ['^node_modules$']
 
 " Plugin - Multiple cursors
 " Use visual mode, then Ctrl+n to create multiple cursors
@@ -137,10 +145,13 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Fmt :call CocAction('format')
 
 " Use `:OrgImport` to organize imports of current buffer
 command! -nargs=0 OrgImport :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" Use <c-space> to trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " Add statusline support, checkout :h coc-status
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
@@ -220,6 +231,8 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+autocmd FileType cpp setlocal shiftwidth=2 softtabstop=2
+
 " Auto indent
 set ai
 set si
@@ -254,6 +267,7 @@ set cmdheight=1
 
 " A buffer becomes hidden when it is abandoned
 set hid
+set hidden
 
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
@@ -307,7 +321,7 @@ set foldnestmax=10
 set foldmethod=syntax
 
 " Vim's update delay
-set updatetime=100
+set updatetime=300
 
 " move vertically by visual line, so if a line gets wrapped the 2nd part
 " doesn't get skipped
@@ -336,9 +350,13 @@ nnoremap <C-w> :BD<CR>
 " I typo this all the time
 cnoreabbrev W w
 cnoreabbrev Wq wq
+cnoreabbrev WQ wq
 cnoreabbrev Q q
 cnoreabbrev Qa qa
 cnoreabbrev Wqa wqa
+cnoreabbrev WQa wqa
+cnoreabbrev Wa wa
+cnoreabbrev WA wa
 cmap qw wq
 cmap qwa wqa
 cmap Qw wq
@@ -353,3 +371,4 @@ set encoding=UTF-8
 " save undos
 set undodir=~/.vimdid
 set undofile
+
