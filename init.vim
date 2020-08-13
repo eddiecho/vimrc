@@ -83,24 +83,6 @@ set nocompatible
 " Plugin - CHADTree
 nnoremap <leader><space> <cmd>CHADopen<cr>
 
-" Plugin - NERDTree
-" Open using Ctrl+m
-" map <C-m> :NERDTreeToggle<CR>
-" <Leader> == \
-" nnoremap <silent> <Leader>v :NERDTreeFind<CR>
-
-" Actually close vim
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" open on start
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" let g:NERDTreeMinimalUI=1
-" let g:NERDTreeDirArrows=0
-" let g:NERDTreeShowHidden=1
-" let g:NERDTreeGitStatusWithFlags=1
-" let g:NERDTreeIgnore = ['^node_modules$']
-
 " Plugin - Multiple cursors
 " Use visual mode, then Ctrl+n to create multiple cursors
 
@@ -144,6 +126,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Use `:Format` to format current buffer
+" TODO - just setup format on save for everything
 command! -nargs=0 Fmt :call CocAction('format')
 
 " Use `:OrgImport` to organize imports of current buffer
@@ -225,12 +208,19 @@ imap kj <Esc>
 set number
 
 " 1 tab == 4 space
+" TODO - i should change this
 set smarttab
 set tabstop=4
 set shiftwidth=4
 set expandtab
 
+autocmd FileType typescript setlocal shiftwidth=2 softtabstop=2
+autocmd FileType typescriptreact setlocal shiftwidth=2 softtabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2
 autocmd FileType cpp setlocal shiftwidth=2 softtabstop=2
+autocmd FileType c setlocal shiftwidth=2 softtabstop=2
+autocmd FileType json setlocal shiftwidth=2 softtabstop=2
+autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2
 
 " Auto indent
 set ai
