@@ -7,19 +7,16 @@ call plug#begin('~/.vim/plugged')
 " Reload this file (:source %), then do :PlugInstall
 
 " Filetree
-" Plug 'scrooloose/nerdtree'
-" Show which files have been in changed in nerdtree
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-" Menu icons - KEEP THIS LAST - also download the meslo code patched font there
+" Menu icons - also download SF mono patched
 Plug 'ryanoasis/vim-devicons'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
+Plug 'luochen1990/rainbow'
 
 " Code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " View tags and LSP symbols in a sidebar
 Plug 'liuchengxu/vista.vim'
-" C/C++ language server
+" C/C++ language semantic highlighting
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 " Make the status and tablines better
@@ -37,6 +34,8 @@ Plug 'ntpeters/vim-better-whitespace'
 " show indentation levels
 Plug 'nathanaelkane/vim-indent-guides'
 
+" IDK try it
+Plug 'chuling/ci_dark'
 " VSCode dark theme for vim
 Plug 'tomasiser/vim-code-dark'
 " IntelliJ darcula theme for vim
@@ -245,7 +244,8 @@ set encoding=utf-8
 
 syntax enable
 let g:airline_theme = 'minimalist'
-colorscheme monokai
+set termguicolors
+colorscheme ci_dark
 " let g:sublimemonokai_term_italic = 1
 
 filetype plugin on

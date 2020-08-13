@@ -1,0 +1,7 @@
+{
+    "python.jediEnabled": false,
+
+    "clangd.disableDiagnostics": true,
+    "clangd.semanticHighlighting": true,
+    "clangd.disableSnippetCompletion": true
+}
