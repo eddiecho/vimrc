@@ -362,3 +362,5 @@ set encoding=UTF-8
 set undodir=~/.vimdid
 set undofile
 
+" Clears "last search pattern" by hitting return
+nnoremap <CR> :noh<CR><CR>
