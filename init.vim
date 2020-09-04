@@ -18,6 +18,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'liuchengxu/vista.vim'
 " C/C++ language semantic highlighting
 Plug 'jackguo380/vim-lsp-cxx-highlight'
+" Prettier
+Plug 'prettier/vim-prettier', {'do': 'npm install'}
 
 " Make the status and tablines better
 Plug 'vim-airline/vim-airline'
@@ -59,8 +61,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-expand-region'
 " Better buffer/tab handling
 Plug 'qpkorr/vim-bufkill'
-" Add pairs of parens, etc automatically without feeling awful
-Plug 'vim-scripts/auto-pairs-gentle'
 " Use <Tab> to scroll through autocompletion lists
 Plug 'ervandew/supertab'
 " Swap windows
@@ -73,6 +73,8 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'markonm/traces.vim'
 " HTML, JSX tag completion
 Plug 'alvan/vim-closetag'
+" Merge conflict highlights
+Plug 'rhysd/conflict-marker.vim'
 
 call plug#end()
 
@@ -91,6 +93,12 @@ nnoremap <leader><space> <cmd>CHADopen<cr>
 " Change surroundings with 'cs<firstsurround><newsurround>'
 " Delete surroundings with 'ds<delimiter>'
 
+" Plugin - prettier
+let g:prettier#autoformat_require_pragma = 0
+let g:prettier#autoformat_config_present = 1
+let g:prettier#exec_cmd_async = 1
+let g:prettier#quickfix_enabled = 0
+
 " Plugin - CoC
 set hidden
 " Some completion servers have issues with backup files
@@ -99,6 +107,13 @@ set nowritebackup
 
 set cmdheight=2
 set shortmess+=c
+
+if has("patch-8.1.1564")
+    " Recently vim can merge signcolumn and number column into one
+    set signcolumn=number
+else
+    set signcolumn=yes
+endif
 
 " JSON syntax with comments
 autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -132,15 +147,15 @@ command! -nargs=0 Fmt :call CocAction('format')
 " Use `:OrgImport` to organize imports of current buffer
 command! -nargs=0 OrgImport :call CocAction('runCommand', 'editor.action.organizeImport')
 
-" Use <c-space> to trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()
+" Use <shift-space> to trigger completion
+inoremap <expr> <S-Space> coc#refresh()
 
 " Add statusline support, checkout :h coc-status
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Plugin - GitGutter
 if exists('&signcolumn')
-    set signcolumn=yes
+    " set signcolumn=yes
 else
     let g:gitgutter_sign_column_always = 1
 endif

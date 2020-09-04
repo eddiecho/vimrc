@@ -3,5 +3,7 @@
 
     "clangd.disableDiagnostics": true,
     "clangd.semanticHighlighting": true,
-    "clangd.disableSnippetCompletion": true
+    "clangd.disableSnippetCompletion": true,
+
+    "coc.preferences.formatOnSaveFiletypes": ["rust", "cpp", "h"]
 }
