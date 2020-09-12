@@ -75,6 +75,10 @@ Plug 'markonm/traces.vim'
 Plug 'alvan/vim-closetag'
 " Merge conflict highlights
 Plug 'rhysd/conflict-marker.vim'
+" Better auto pairs?
+Plug 'jiangmiao/auto-pairs'
+" Show buffer contents
+Plug 'junegunn/vim-peekaboo'
 
 call plug#end()
 
@@ -213,6 +217,9 @@ autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 " Plugin - GitMessenger
 " <Leader>gm to show the blame
 let g:git_messenger_include_diff = 'current'
+
+" Plugin - AutoPairs
+let g:AutoPairs = { '(':')', '[':']', '{':'}' }
 
 " End Plugin specific setup
 
