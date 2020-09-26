@@ -14,12 +14,17 @@ Plug 'luochen1990/rainbow'
 
 " Code completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" View tags and LSP symbols in a sidebar
-Plug 'liuchengxu/vista.vim'
 " C/C++ language semantic highlighting
-Plug 'jackguo380/vim-lsp-cxx-highlight'
+Plug 'octol/vim-cpp-enhanced-highlight'
 " Prettier
 Plug 'prettier/vim-prettier', {'do': 'npm install'}
+" Coc format on save doesn't respect clang-format????
+" This plugin is trash, it runs synchronously, so it locks your editor for
+" 10+ seconds on <1000 line file?!?!?!?!?!?!!?!?
+" Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
+" ClangFormat doesn't use Neovim's async primitives.... vim-clang-format still
+" hangs with this?!?!?!?!?
+" Plug 'Shougo/vimproc.vim', {'do': 'make'}
 
 " Make the status and tablines better
 Plug 'vim-airline/vim-airline'
@@ -47,8 +52,6 @@ Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'crusoexia/vim-monokai'
 " Airline themes - I only use minimalist or bubblegum
 Plug 'vim-airline/vim-airline-themes'
-" Lots of syntax stuff
-Plug 'sheerun/vim-polyglot'
 
 " Surround
 Plug 'tpope/vim-surround'
@@ -147,6 +150,8 @@ nmap <leader>rn <Plug>(coc-rename)
 " Use `:Format` to format current buffer
 " TODO - just setup format on save for everything
 command! -nargs=0 Fmt :call CocAction('format')
+" let g:clang_format#detect_style_file = 1
+" let g:clang_format#auto_format = 1
 
 " Use `:OrgImport` to organize imports of current buffer
 command! -nargs=0 OrgImport :call CocAction('runCommand', 'editor.action.organizeImport')
@@ -204,15 +209,15 @@ let g:Illuminate_highlightUnderCursor = 0
 let g:Illuminate_ftblacklist = ['nerdtree']
 
 " Plugin - Vista
-let g:vista_default_executive = 'coc'
-let g:vista#renderer#enable_icon = 1
-
-function! NearestMethodOrFunction() abort
-    return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
-set statusline+=%{NearestMethodOrFunction()}
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+"let g:vista_default_executive = 'coc'
+"let g:vista#renderer#enable_icon = 1
+"
+"function! NearestMethodOrFunction() abort
+"    return get(b:, 'vista_nearest_method_or_function', '')
+"endfunction
+"
+"set statusline+=%{NearestMethodOrFunction()}
+"autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 " Plugin - GitMessenger
 " <Leader>gm to show the blame

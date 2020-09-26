@@ -5,5 +5,5 @@
     "clangd.semanticHighlighting": true,
     "clangd.disableSnippetCompletion": true,
 
-    "coc.preferences.formatOnSaveFiletypes": ["rust", "cpp", "h"]
+    "coc.preferences.formatOnSaveFiletypes": ["rust"]
 }
