@@ -13,18 +13,17 @@ Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 Plug 'luochen1990/rainbow'
 
 " Code completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'tjdevries/lsp_extensions.nvim'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/diagnostic-nvim'
 " C/C++ language semantic highlighting
 Plug 'octol/vim-cpp-enhanced-highlight'
 " Prettier
-Plug 'prettier/vim-prettier', {'do': 'npm install'}
-" Coc format on save doesn't respect clang-format????
-" This plugin is trash, it runs synchronously, so it locks your editor for
-" 10+ seconds on <1000 line file?!?!?!?!?!?!!?!?
-" Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
-" ClangFormat doesn't use Neovim's async primitives.... vim-clang-format still
-" hangs with this?!?!?!?!?
-" Plug 'Shougo/vimproc.vim', {'do': 'make'}
+Plug 'prettier/vim-prettier', {'do': 'npm install', 'for': ['javascript', 'typescript', 'json']}
+" Typescript syntax highlighting
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'peitalin/vim-jsx-typescript'
 
 " Make the status and tablines better
 Plug 'vim-airline/vim-airline'
@@ -101,16 +100,18 @@ nnoremap <leader><space> <cmd>CHADopen<cr>
 " Delete surroundings with 'ds<delimiter>'
 
 " Plugin - prettier
+let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
 let g:prettier#autoformat_config_present = 1
 let g:prettier#exec_cmd_async = 1
 let g:prettier#quickfix_enabled = 0
 
-" Plugin - CoC
+" LSP configuration
 set hidden
 " Some completion servers have issues with backup files
 set nobackup
 set nowritebackup
+set backupcopy=yes
 
 set cmdheight=2
 set shortmess+=c
@@ -125,42 +126,63 @@ endif
 " JSON syntax with comments
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
-" GoTo defintions, et al
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" Better completion experience?
+" menuone: popup even when there's only one match
+" noinsert: do not insert text until a selection is made
+" noselect: do not select, force user to select one from the menu
+set completeopt=menuone,noinsert,noselect
 
-" Use B to show documentation in preview window
-nnoremap <silent> B :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-    if (index(['vim', 'help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
+" Avoid showing extra messages when using completion
+set shortmess+=c
+
+" Configure LSP
+lua <<EOF
+
+-- nvim_lsp object
+local nvim_lsp = require'nvim_lsp'
+
+-- function to attach completion and diagnostics
+-- when setting up lsp
+local on_attach = function(client)
+    require'completion'.on_attach(client)
+    require'diagnostic'.on_attach(client)
+end
+
+require'nvim_lsp'.tsserver.setup({ on_attach=on_attach })
+require'nvim_lsp'.rust_analyzer.setup({ on_attach=on_attach })
+require'nvim_lsp'.pyls.setup({})
+
+EOF
+
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ completion#trigger_completion()
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" Visualize diagnostics
+let g:diagnostic_enable_virtual_text = 1
+let g:diagnostic_trimmed_virtual_text = '40'
+" don't show diagnostics while in insert mode
+let g:diagnostic_insert_delay = 1
 
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
 
-" Use `:Format` to format current buffer
-" TODO - just setup format on save for everything
-command! -nargs=0 Fmt :call CocAction('format')
-" let g:clang_format#detect_style_file = 1
-" let g:clang_format#auto_format = 1
+autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
+\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
 
-" Use `:OrgImport` to organize imports of current buffer
-command! -nargs=0 OrgImport :call CocAction('runCommand', 'editor.action.organizeImport')
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> <c-[> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.implementation()<CR>
 
-" Use <shift-space> to trigger completion
-inoremap <expr> <S-Space> coc#refresh()
 
-" Add statusline support, checkout :h coc-status
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" try using nvim lsp
 
 " Plugin - GitGutter
 if exists('&signcolumn')
@@ -207,17 +229,6 @@ let g:SuperTabMappingBackward = '<tab>'
 let g:Illuminate_delay = 150
 let g:Illuminate_highlightUnderCursor = 0
 let g:Illuminate_ftblacklist = ['nerdtree']
-
-" Plugin - Vista
-"let g:vista_default_executive = 'coc'
-"let g:vista#renderer#enable_icon = 1
-"
-"function! NearestMethodOrFunction() abort
-"    return get(b:, 'vista_nearest_method_or_function', '')
-"endfunction
-"
-"set statusline+=%{NearestMethodOrFunction()}
-"autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 " Plugin - GitMessenger
 " <Leader>gm to show the blame
