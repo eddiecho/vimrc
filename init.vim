@@ -1,22 +1,12 @@
 " Plugins
 
- Install vim-plug if not found
+" Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
-" Run PlugInstall if there are missing plugins
-if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
 call plug#begin('~/.vim/plugged')
-
-" Plugin Manager - plug.vim
-" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-" Reload this file (:source %), then do :PlugInstall
 
 " Filetree
 " Menu icons - also download SF mono patched
@@ -26,7 +16,7 @@ Plug 'luochen1990/rainbow'
 
 " Code completion
 Plug 'neovim/nvim-lspconfig'
-Plug 'tjdevries/lsp_extensions.nvim'
+Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/diagnostic-nvim'
 " C/C++ language semantic highlighting
