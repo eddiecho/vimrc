@@ -137,7 +137,7 @@ set shortmess+=c
 " Configure LSP
 lua <<EOF
 
--- nvim_lsp object
+-- lspconfig object
 local lspconfig = require'lspconfig'
 
 -- function to attach completion and diagnostics
