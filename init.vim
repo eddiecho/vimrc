@@ -19,13 +19,8 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/diagnostic-nvim'
-" C/C++ language semantic highlighting
-Plug 'octol/vim-cpp-enhanced-highlight'
 " Prettier
 Plug 'prettier/vim-prettier', {'do': 'npm install', 'for': ['javascript', 'typescript', 'json']}
-" Typescript syntax highlighting
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'peitalin/vim-jsx-typescript'
 
 " Make the status and tablines better
 Plug 'vim-airline/vim-airline'
@@ -42,13 +37,13 @@ Plug 'ntpeters/vim-better-whitespace'
 " show indentation levels
 Plug 'nathanaelkane/vim-indent-guides'
 
-" IDK try it
+" Pleasant bluish theme
 Plug 'chuling/ci_dark'
 " VSCode dark theme for vim
 Plug 'tomasiser/vim-code-dark'
 " IntelliJ darcula theme for vim
 Plug 'doums/darcula'
-" Monokai theme
+" Monokai themes, they're ok I guess?
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'crusoexia/vim-monokai'
 " Airline themes - I only use minimalist or bubblegum
@@ -57,7 +52,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Surround
 Plug 'tpope/vim-surround'
 " Multiple cursors
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 " Open files with fuzzy match
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -89,6 +84,8 @@ call plug#end()
 set nocompatible
 
 " Plugin specific setup
+" Plugin - rainbow parens
+let g:rainbow_active = 1
 
 " Plugin - CHADTree
 nnoremap <leader><space> <cmd>CHADopen<cr>
@@ -141,7 +138,7 @@ set shortmess+=c
 lua <<EOF
 
 -- nvim_lsp object
-local nvim_lsp = require'nvim_lsp'
+local lspconfig = require'lspconfig'
 
 -- function to attach completion and diagnostics
 -- when setting up lsp
@@ -150,9 +147,9 @@ local on_attach = function(client)
     require'diagnostic'.on_attach(client)
 end
 
-require'nvim_lsp'.tsserver.setup({ on_attach=on_attach })
-require'nvim_lsp'.rust_analyzer.setup({ on_attach=on_attach })
-require'nvim_lsp'.pyls.setup({})
+require'lspconfig'.tsserver.setup({ on_attach=on_attach })
+require'lspconfig'.rust_analyzer.setup({ on_attach=on_attach })
+require'lspconfig'.pyls.setup({})
 
 EOF
 
@@ -214,8 +211,8 @@ let g:indent_guides_guide_size = 1
 nnoremap <expr> <C-p> (len(system('git rev-parse')) ? ':Files' : ':GFiles --exclude-standard --others --cached')."\<cr>"
 
 " Plugin - ExpandRegion
-map K <Plug>(expand_region_expand)
-map J <Plug>(expand_region_shrink)
+map <C-K> <Plug>(expand_region_expand)
+map <C-J> <Plug>(expand_region_shrink)
 
 " Plugin - AutoPairsGentle
 let g:AutoPairsUseInsertedCount = 1
@@ -362,10 +359,10 @@ nnoremap <Up> gk
 
 " Split window aliases
 " Shift + Left move to left window
-nnoremap <S-Left> <C-w>h
-nnoremap <S-Right> <C-w>l
-nnoremap <S-Up> <C-w>k
-nnoremap <S-Down> <C-w>j
+nnoremap H <C-w>h
+nnoremap L <C-w>l
+nnoremap K <C-w>k
+nnoremap J <C-w>j
 
 " Ctrl + left and right for tab navigation
 nnoremap <C-Left> :tabprevious<CR>
