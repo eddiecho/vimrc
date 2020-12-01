@@ -21,6 +21,8 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/diagnostic-nvim'
 " Prettier
 Plug 'prettier/vim-prettier', {'do': 'npm install', 'for': ['javascript', 'typescript', 'json']}
+" Another syntax highlighting thing
+Plug 'nvim-treesitter/nvim-treesitter'
 
 " Make the status and tablines better
 Plug 'vim-airline/vim-airline'
@@ -46,6 +48,7 @@ Plug 'doums/darcula'
 " Monokai themes, they're ok I guess?
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'crusoexia/vim-monokai'
+Plug 'sainnhe/sonokai'
 " Airline themes - I only use minimalist or bubblegum
 Plug 'vim-airline/vim-airline-themes'
 
@@ -105,6 +108,16 @@ let g:prettier#autoformat_config_present = 1
 let g:prettier#exec_cmd_async = 1
 let g:prettier#quickfix_enabled = 0
 
+" Treesitter syntax highlighting
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+    ensure_installed = "maintained",
+    highlight = {
+        enable = true,
+    }
+}
+EOF
+
 " LSP configuration
 set hidden
 " Some completion servers have issues with backup files
@@ -144,7 +157,6 @@ local lspconfig = require'lspconfig'
 -- when setting up lsp
 local on_attach = function(client)
     require'completion'.on_attach(client)
-    require'diagnostic'.on_attach(client)
 end
 
 require'lspconfig'.tsserver.setup({ on_attach=on_attach })
@@ -169,7 +181,7 @@ let g:diagnostic_trimmed_virtual_text = '40'
 " don't show diagnostics while in insert mode
 let g:diagnostic_insert_delay = 1
 
-autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
+autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 
 autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
 \ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
@@ -272,7 +284,9 @@ set encoding=utf-8
 syntax enable
 let g:airline_theme = 'minimalist'
 set termguicolors
-colorscheme ci_dark
+let g:sonokai_style = 'andromeda'
+let g:sonokai_enable_italic = 1
+colorscheme sonokai
 " let g:sublimemonokai_term_italic = 1
 
 filetype plugin on
