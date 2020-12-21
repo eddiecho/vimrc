@@ -398,8 +398,8 @@ nnoremap <A-w> :bd<CR>
 
 " Tab for buffer navigation
 " These keymaps come from vim-bufkill, otherwise use bnext, bprevious, bd
-nnoremap <Tab> :BF<CR>:redraw<CR>:ls<CR>
-nnoremap <S-Tab> :BB<CR>:redraw<CR>:ls<CR>
+nnoremap <Tab> :bnext<CR>:redraw<CR>:ls<CR>
+nnoremap <S-Tab> :bprev<CR>:redraw<CR>:ls<CR>
 nnoremap <C-w> :BD<CR>
 
 " I typo this all the time
