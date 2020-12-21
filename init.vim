@@ -12,7 +12,6 @@ call plug#begin('~/.vim/plugged')
 " Menu icons - also download SF mono patched
 Plug 'ryanoasis/vim-devicons'
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
-Plug 'luochen1990/rainbow'
 
 " Code completion
 Plug 'neovim/nvim-lspconfig'
@@ -22,9 +21,13 @@ Plug 'nvim-lua/diagnostic-nvim'
 " Prettier
 Plug 'prettier/vim-prettier', {'do': 'npm install', 'for': ['javascript', 'typescript', 'json']}
 " Another syntax highlighting thing
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
+" Typescript sucks at highlighting from treesitter for some reason
+Plug 'peitalin/vim-jsx-typescript'
+" Debugger
+Plug 'puremourning/vimspector'
 
-" Make the status and tablines better
+" Status line
 Plug 'vim-airline/vim-airline'
 " Some git stuff, I only want it because it makes airline show the branch name
 Plug 'tpope/vim-fugitive'
@@ -43,6 +46,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'chuling/ci_dark'
 " VSCode dark theme for vim
 Plug 'tomasiser/vim-code-dark'
+Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
 " IntelliJ darcula theme for vim
 Plug 'doums/darcula'
 " Monokai themes, they're ok I guess?
@@ -65,8 +69,6 @@ Plug 'terryma/vim-expand-region'
 Plug 'qpkorr/vim-bufkill'
 " Use <Tab> to scroll through autocompletion lists
 Plug 'ervandew/supertab'
-" Swap windows
-Plug 'wesQ3/vim-windowswap'
 " Change Vim's definition of a word to include snake_case and camelCase
 Plug 'chaoren/vim-wordmotion'
 " Highlight yanked text
@@ -87,11 +89,10 @@ call plug#end()
 set nocompatible
 
 " Plugin specific setup
-" Plugin - rainbow parens
-let g:rainbow_active = 1
 
 " Plugin - CHADTree
 nnoremap <leader><space> <cmd>CHADopen<cr>
+let g:chadtree_colours = {'8_bit': {'Blue' : {'hl24' : '#569CD6', 'hl8' : 'Cyan'}}}
 
 " Plugin - Multiple cursors
 " Use visual mode, then Ctrl+n to create multiple cursors
@@ -114,6 +115,10 @@ require'nvim-treesitter.configs'.setup {
     ensure_installed = "maintained",
     highlight = {
         enable = true,
+        disable = { "typescript", "tsx" }
+    },
+    indent = {
+        enable = true
     }
 }
 EOF
@@ -159,7 +164,7 @@ local on_attach = function(client)
     require'completion'.on_attach(client)
 end
 
-require'lspconfig'.tsserver.setup({ on_attach=on_attach })
+require'lspconfig'.tsserver.setup({ })
 require'lspconfig'.rust_analyzer.setup({ on_attach=on_attach })
 require'lspconfig'.pyls.setup({})
 
@@ -191,9 +196,6 @@ nnoremap <silent> <c-[> <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.implementation()<CR>
-
-
-" try using nvim lsp
 
 " Plugin - GitGutter
 if exists('&signcolumn')
@@ -248,6 +250,10 @@ let g:git_messenger_include_diff = 'current'
 " Plugin - AutoPairs
 let g:AutoPairs = { '(':')', '[':']', '{':'}' }
 
+" Plugin - Vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
+nnoremap <leader>dbg :call vimspector#Reset()<CR>
+
 " End Plugin specific setup
 
 " Map "kj" to esc
@@ -271,6 +277,12 @@ autocmd FileType c setlocal shiftwidth=2 softtabstop=2
 autocmd FileType json setlocal shiftwidth=2 softtabstop=2
 autocmd FileType yaml setlocal shiftwidth=2 softtabstop=2
 
+augroup ReactFileTypes
+    autocmd!
+    autocmd BufRead,BufNewFile *.jsx set filetype=javascriptreact
+    autocmd BufRead,BufNewFile *.tsx set filetype=typescriptreact
+augroup END
+
 " Auto indent
 set ai
 set si
@@ -286,8 +298,9 @@ let g:airline_theme = 'minimalist'
 set termguicolors
 let g:sonokai_style = 'andromeda'
 let g:sonokai_enable_italic = 1
-colorscheme sonokai
-" let g:sublimemonokai_term_italic = 1
+let g:sublimemonokai_term_italic = 1
+let g:nvcode_termcolors=256
+colorscheme ci_dark
 
 filetype plugin on
 filetype indent on
@@ -384,8 +397,9 @@ nnoremap <C-Right> :tabnext<CR>
 nnoremap <A-w> :bd<CR>
 
 " Tab for buffer navigation
-nnoremap <Tab> :bnext<CR>:redraw<CR>:ls<CR>
-nnoremap <S-Tab> :bprevious<CR>:redraw<CR>:ls<CR>
+" These keymaps come from vim-bufkill, otherwise use bnext, bprevious, bd
+nnoremap <Tab> :BF<CR>:redraw<CR>:ls<CR>
+nnoremap <S-Tab> :BB<CR>:redraw<CR>:ls<CR>
 nnoremap <C-w> :BD<CR>
 
 " I typo this all the time
