@@ -1,17 +1,6 @@
-diff --git a/lua/base16.lua b/lua/base16.lua
-index 1484330..2d20e8b 100644
---- a/lua/base16.lua
-+++ b/lua/base16.lua
-@@ -624,6 +624,12 @@ themes["cupertino"] = {
- 	base08 = "c41a15"; base09 = "eb8500"; base0A = "826b28"; base0B = "007400";
- 	base0C = "318495"; base0D = "0000ff"; base0E = "a90d91"; base0F = "826b28";
- }
-+themes["darcula"] = {
-+	base00 = "2b2b2b"; base01 = "323232"; base02 = "323232"; base03 = "606366";
-+	base04 = "a4a3a3"; base05 = "a9b7c6"; base06 = "ffc66d"; base07 = "ffffff";
-+	base08 = "4eade5"; base09 = "689757"; base0A = "bbb529"; base0B = "6a8759";
-+	base0C = "629755"; base0D = "9876aa"; base0E = "cc7832"; base0F = "808080";
-+}
- themes["darktooth"] = {
- 	base00 = "1D2021"; base01 = "32302F"; base02 = "504945"; base03 = "665C54";
- 	base04 = "928374"; base05 = "A89984"; base06 = "D5C4A1"; base07 = "FDF4C1";
+themes["darcula"] = {
+	base00 = "2b2b2b"; base01 = "323232"; base02 = "323232"; base03 = "606366";
+	base04 = "a4a3a3"; base05 = "a9b7c6"; base06 = "ffc66d"; base07 = "ffffff";
+	base08 = "4eade5"; base09 = "689757"; base0A = "bbb529"; base0B = "6a8759";
+	base0C = "629755"; base0D = "9876aa"; base0E = "cc7832"; base0F = "808080";
+}
