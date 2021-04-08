@@ -7,7 +7,7 @@ require "bufferline.lua"
 require "statusline.lua"
 
 require("colorizer").setup()
-require("neoscroll").setup() -- smooth scroll
+require("neoscroll").setup()
 
 -- lsp
 require "lspconfig.lua"
@@ -24,7 +24,7 @@ cmd "syntax enable"
 cmd "syntax on"
 
 local base16 = require "base16"
-base16(base16.themes["onedark"], true)
+base16(base16.themes["darcula"], true)
 
 -- blankline
 

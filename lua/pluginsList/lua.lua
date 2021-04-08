@@ -5,32 +5,61 @@ local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
 return require("packer").startup(
     function()
         use {"wbthomason/packer.nvim", opt = true}
-        use {"lukas-reineke/indent-blankline.nvim", branch = "lua"}
 
+        -- Shows indentation
+        use {"lukas-reineke/indent-blankline.nvim", branch = "lua"}
+        -- Theme helper
         use "norcalli/nvim-base16.lua"
+        use "nekonako/xresources-nvim"
+        -- File icons
         use "kyazdani42/nvim-web-devicons"
-        use "kyazdani42/nvim-tree.lua"
-        use "nvim-lua/plenary.nvim"
-        use "lewis6991/gitsigns.nvim"
-        use "akinsho/nvim-bufferline.lua"
-        use "glepnir/galaxyline.nvim"
-        use "907th/vim-auto-save"
-        use "nvim-treesitter/nvim-treesitter"
-        use "norcalli/nvim-colorizer.lua"
         use "ryanoasis/vim-devicons"
+        -- File explorer, go back to ChadTree?
+        use "kyazdani42/nvim-tree.lua"
+        -- Show changes in the gutter
+        use "lewis6991/gitsigns.nvim"
+        -- Tab/buffers on the top
+        use "akinsho/nvim-bufferline.lua"
+        -- Statusline replacement
+        use "glepnir/galaxyline.nvim"
+        -- It's in the name
+        use "907th/vim-auto-save"
+        -- Syntax highlighting
+        use "nvim-treesitter/nvim-treesitter"
+        -- Highlight hex colors
+        use "norcalli/nvim-colorizer.lua"
+        -- Code formatting
         use "sbdchd/neoformat"
+        -- Language server
         use "neovim/nvim-lspconfig"
+        use "onsails/lspkind-nvim"
+        -- Auto completion
         use "hrsh7th/nvim-compe"
+        -- Auto pair some stuff
         use "windwp/nvim-autopairs"
         use "alvan/vim-closetag"
+        -- Profile startup time for bottlenecks
         use "tweekmonster/startuptime.vim"
-        use "onsails/lspkind-nvim"
+        -- Fuzzy finder
         use "nvim-telescope/telescope.nvim"
         use "nvim-telescope/telescope-media-files.nvim"
+        -- Popup windows
         use "nvim-lua/popup.nvim"
+        -- Smooth scrolling for jumps
         use "karb94/neoscroll.nvim"
-
-        use "nekonako/xresources-nvim"
-        
+        -- Used by other plugins as helper functions
+        use "nvim-lua/plenary.nvim"
+        -- Highlight trailing whitespace
+        use "ntpeters/vim-better-whitespace"
+        -- Debugger
+        use "puremourning/vimspector"
+        -- Live preview for search and replace
+        use "markonm/traces.vim"
+        -- Include snake_case and camelCase word skips
+        use "chaoren/vim-wordmotion"
+        -- Highlight merge conflicts
+        use "rhysd/conflict-marker.vim"
+        -- Show buffer contents
+        use "junegunn/vim-peekaboo"
     end
 )
