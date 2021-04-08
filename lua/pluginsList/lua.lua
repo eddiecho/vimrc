@@ -11,6 +11,7 @@ return require("packer").startup(
         -- Theme helper
         use "norcalli/nvim-base16.lua"
         use "nekonako/xresources-nvim"
+        use "sainnhe/sonokai"
         -- File icons
         use "kyazdani42/nvim-web-devicons"
         use "ryanoasis/vim-devicons"

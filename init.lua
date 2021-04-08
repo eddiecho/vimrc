@@ -22,9 +22,12 @@ g.auto_save = 1
 
 cmd "syntax enable"
 cmd "syntax on"
+g.sonokai_style = "andromeda"
+g.sonokai_enable_italic = 1
+cmd "colorscheme sonokai"
 
-local base16 = require "base16"
-base16(base16.themes["darcula"], true)
+-- local base16 = require "base16"
+-- base16(base16.themes["monokai"], true)
 
 -- blankline
 
@@ -69,7 +72,9 @@ cmd "hi NvimTreeFolderIcon guifg = #61afef"
 cmd "hi NvimTreeFolderName guifg = #61afef"
 cmd "hi NvimTreeIndentMarker guifg=#383c44"
 
-cmd "hi Normal guibg=NONE ctermbg=NONE"
+-- cmd "hi Normal guibg=NONE ctermbg=NONE"
+cmd "hi Normal ctermbg=NONE"
+cmd "hi nonText ctermbg=NONE"
 
 -- git signs
 require "gitsigns.lua"
