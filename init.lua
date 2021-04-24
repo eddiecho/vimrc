@@ -36,7 +36,7 @@ local indent = 2
 g.indentLine_enabled = 1
 g.indent_blankline_char = "▏"
 
-cmd "hi IndentBlanklineChar guifg=#2a2e36"
+cmd "hi IndentBlanklineChar guifg=#42464e"
 
 g.indent_blankline_filetype_exclude = {"help", "terminal"}
 g.indent_blankline_buftype_exclude = {"terminal"}

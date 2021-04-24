@@ -46,8 +46,8 @@ heading "old nvim config will be deleted so watchout :0"
 
 # copying config
 
-rm -rf ~/.config/nvim/ && mkdir -p ~/.config/nvim
-cp -r init.lua ~/.config/nvim && cp -r lua ~/.config/nvim
+# rm -rf ~/.config/nvim/ && mkdir -p ~/.config/nvim
+# cp -r init.lua ~/.config/nvim && cp -r lua ~/.config/nvim
 
 # change shell for nvim
 read -p "which shell do you use?: " shellname

@@ -62,5 +62,7 @@ return require("packer").startup(
         use "rhysd/conflict-marker.vim"
         -- Show buffer contents
         use "junegunn/vim-peekaboo"
+        -- Highlight yanks
+        use "machakann/vim-highlightedyank"
     end
 )
