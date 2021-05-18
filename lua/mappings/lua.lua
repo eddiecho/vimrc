@@ -22,10 +22,8 @@ map("n", "N", "Nzz")
 map("n", "<CR>", ":noh<CR><CR>")
 
 -- Because I'm a bad typist
-map("c", "W", "w")
 map("c", "Wq", "wq")
 map("c", "WQ", "wq")
-map("c", "Q", "q")
 map("c", "Qa", "qa")
 map("c", "Wqa", "wqa")
 map("c", "WQa", "wqa")
