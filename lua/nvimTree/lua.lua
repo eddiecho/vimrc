@@ -35,9 +35,9 @@ g.nvim_tree_icons = {
         untracked = "★"
     },
     folder = {
-        default = "",
-        open = "",
-        symlink = ""
+        default = "",
+        open = "",
+        symlink = ""
     }
 }
 

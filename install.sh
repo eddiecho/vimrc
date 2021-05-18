@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+# copied from https://github.com/siduck76/neovim-dotfiles
+
 BASE=$(git rev-parse --show-toplevel)
 LSP_BIN_PATH=$HOME/.local/bin
 
