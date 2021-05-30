@@ -96,6 +96,11 @@ require "nvim-web-devicons".setup {
             icon = "",
             color = "#EBCB8B",
             name = "xz"
+        },
+        h = {
+            icon = "",
+            color = "#61afef",
+            name = "h"
         }
     }
 }
