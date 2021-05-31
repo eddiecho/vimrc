@@ -7,7 +7,6 @@ require "bufferline.lua"
 require "statusline.lua"
 
 require("colorizer").setup()
-require("neoscroll").setup()
 
 -- lsp
 require "lspconfig.lua"

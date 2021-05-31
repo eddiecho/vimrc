@@ -46,8 +46,6 @@ return require("packer").startup(
         use "nvim-telescope/telescope-media-files.nvim"
         -- Popup windows
         use "nvim-lua/popup.nvim"
-        -- Smooth scrolling for jumps
-        use "karb94/neoscroll.nvim"
         -- Used by other plugins as helper functions
         use "nvim-lua/plenary.nvim"
         -- Highlight trailing whitespace
