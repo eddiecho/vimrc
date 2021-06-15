@@ -35,7 +35,6 @@ opt("b", "shiftwidth", 2)
 -- Colors
 opt("o", "termguicolors", true)
 opt("o", "background", "dark")
-opt("o", "t_Co", "256")
 
 local M = {}
 
