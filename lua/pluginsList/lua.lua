@@ -1,5 +1,10 @@
--- check if packer is installed (~/local/share/nvim/site/pack)
-local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
+local execute = vim.api.nvim_command
+local fn = vim.fn
+
+local packer_ok, packer = pcall(require, "packer")
+if not packer_ok then
+  return
+end
 
 -- using { } when using a different branch of the plugin or loading the plugin with certain commands
 return require("packer").startup(
@@ -34,6 +39,7 @@ return require("packer").startup(
         -- Language server
         use "neovim/nvim-lspconfig"
         use "onsails/lspkind-nvim"
+        use "ray-x/lsp_signature.nvim"
         -- Auto completion
         use "hrsh7th/nvim-compe"
         -- Auto pair some stuff

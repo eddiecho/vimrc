@@ -93,6 +93,14 @@ require("lspkind").init(
     }
 )
 
+require "lsp_signature".on_attach({
+  bind = true,
+  floating_window = true,
+  handler_opts = {
+    border = "single"
+  }
+})
+
 -- hide line numbers in terminal windows
 vim.api.nvim_exec([[
    au BufEnter term://* setlocal nonumber

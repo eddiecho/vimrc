@@ -31,9 +31,6 @@ function on_attach(client)
     buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
     buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
 
-    if client.resolved_capabilities.document_formatting then
-      vim.api.nvim_command[[autocmd BufWritePre <buffer> * vim.lsp.buf.formatting_sync()]]
-    end
 end
 
 local servers = {"tsserver", "cssls", "html" , "pyright", "clangd", "rust_analyzer"}
