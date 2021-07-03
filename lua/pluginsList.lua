@@ -1,11 +1,3 @@
-local execute = vim.api.nvim_command
-local fn = vim.fn
-
-local packer_ok, packer = pcall(require, "packer")
-if not packer_ok then
-  return
-end
-
 vim.cmd [[packadd packer.nvim]]
 
 -- using { } when using a different branch of the plugin or loading the plugin with certain commands
@@ -27,6 +19,7 @@ return require("packer").startup(
         -- Show changes in the gutter
         use "lewis6991/gitsigns.nvim"
         -- Tab/buffers on the top
+        -- TODO - evaluate romgrk/barbar.nvim
         use "akinsho/nvim-bufferline.lua"
         -- Statusline replacement
         use "glepnir/galaxyline.nvim"
@@ -34,6 +27,7 @@ return require("packer").startup(
         use "907th/vim-auto-save"
         -- Syntax highlighting
         use "nvim-treesitter/nvim-treesitter"
+        use "nvim-treesitter/playground"
         -- Highlight hex colors
         use "norcalli/nvim-colorizer.lua"
         -- Code formatting
@@ -58,8 +52,6 @@ return require("packer").startup(
         use "nvim-lua/plenary.nvim"
         -- Highlight trailing whitespace
         use "ntpeters/vim-better-whitespace"
-        -- Debugger
-        use "puremourning/vimspector"
         -- Live preview for search and replace
         use "markonm/traces.vim"
         -- Include snake_case and camelCase word skips
@@ -70,5 +62,7 @@ return require("packer").startup(
         use "junegunn/vim-peekaboo"
         -- Highlight yanks
         use "machakann/vim-highlightedyank"
+        -- view lsp symbols in file
+        -- use "simrat39/symbols-outline.nvim"
     end
 )

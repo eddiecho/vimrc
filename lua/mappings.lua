@@ -8,6 +8,9 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+-- default Leader key
+map("n", "]", "<Leader>")
+
 -- Move vertically by visual line
 map("", "j", "gj")
 map("", "k", "gk")

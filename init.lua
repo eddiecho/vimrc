@@ -1,16 +1,17 @@
 -- load all plugins
-require "pluginsList.lua"
-require "file-icons.lua"
+require "pluginsList"
+require "plugins/fileicons"
 
-require "misc-utils.lua"
-require "bufferline.lua"
-require "statusline.lua"
+require "options"
+require "utils"
+require "plugins/bufferline"
+require "plugins/statusline"
 
 require("colorizer").setup()
 
 -- lsp
-require "lspconfig.lua"
-require "compe.lua"
+require "plugins/lspconfig"
+require "plugins/compe"
 
 local cmd = vim.cmd
 local g = vim.g
@@ -43,8 +44,8 @@ g.indent_blankline_buftype_exclude = {"terminal"}
 g.indent_blankline_show_trailing_blankline_indent = false
 g.indent_blankline_show_first_indent_level = false
 
-require("treesitter.lua")
-require("mappings.lua")
+require("plugins/treesitter")
+require("mappings")
 
 -- highlights --
 cmd "hi LineNr guifg=#42464e guibg=NONE"
@@ -57,7 +58,7 @@ cmd "hi PmenuSel guibg=#98c379"
 cmd "hi Pmenu  guibg=#282c34"
 
 -- telescope stuff and popupmenu
-require "telescope.lua"
+require "plugins/telescope"
 
 cmd "hi TelescopeBorder   guifg=#2a2e36"
 cmd "hi TelescopePromptBorder   guifg=#2a2e36"
@@ -65,7 +66,7 @@ cmd "hi TelescopeResultsBorder  guifg=#2a2e36"
 cmd "hi TelescopePreviewBorder  guifg=#525865"
 
 --  nvim tree color for folder name and icon
-require "nvimTree.lua"
+require "plugins/nvimtree"
 
 cmd "hi NvimTreeFolderIcon guifg = #61afef"
 cmd "hi NvimTreeFolderName guifg = #61afef"
@@ -76,7 +77,7 @@ cmd "hi Normal ctermbg=NONE"
 cmd "hi nonText ctermbg=NONE"
 
 -- git signs
-require "gitsigns.lua"
+require "plugins/gitsigns"
 
 cmd "hi DiffAdd guifg=#81A1C1 guibg = none"
 cmd "hi DiffChange guifg =#3A3E44 guibg = none"

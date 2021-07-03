@@ -69,3 +69,4 @@ vim.api.nvim_set_keymap("n", "<C-w>", [[<Cmd>bdelete<CR>]], opt)
 -- tabnew and tabprev
 vim.api.nvim_set_keymap("n", "<Tab>", [[<Cmd>BufferLineCycleNext<CR>]], opt)
 vim.api.nvim_set_keymap("n", "<S-Tab>", [[<Cmd>BufferLineCyclePrev<CR>]], opt)
+
