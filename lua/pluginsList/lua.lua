@@ -6,13 +6,15 @@ if not packer_ok then
   return
 end
 
+vim.cmd [[packadd packer.nvim]]
+
 -- using { } when using a different branch of the plugin or loading the plugin with certain commands
 return require("packer").startup(
     function()
         use {"wbthomason/packer.nvim", opt = true}
 
         -- Shows indentation
-        use {"lukas-reineke/indent-blankline.nvim", branch = "lua"}
+        use "lukas-reineke/indent-blankline.nvim"
         -- Theme helper
         use "norcalli/nvim-base16.lua"
         use "nekonako/xresources-nvim"
