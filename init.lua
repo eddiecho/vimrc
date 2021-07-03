@@ -2,6 +2,7 @@
 require "pluginsList"
 require "plugins/fileicons"
 
+require "mappings"
 require "options"
 require "utils"
 require "plugins/bufferline"
@@ -16,8 +17,6 @@ require "plugins/compe"
 local cmd = vim.cmd
 local g = vim.g
 
-g.auto_save = 0
-
 -- colorscheme related stuff
 
 cmd "syntax enable"
@@ -30,7 +29,6 @@ cmd "colorscheme sonokai"
 -- base16(base16.themes["monokai"], true)
 
 -- blankline
-
 local indent = 2
 
 g.indentLine_enabled = 1
@@ -45,7 +43,6 @@ g.indent_blankline_show_trailing_blankline_indent = false
 g.indent_blankline_show_first_indent_level = false
 
 require("plugins/treesitter")
-require("mappings")
 
 -- highlights --
 cmd "hi LineNr guifg=#42464e guibg=NONE"

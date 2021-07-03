@@ -23,8 +23,6 @@ return require("packer").startup(
         use "akinsho/nvim-bufferline.lua"
         -- Statusline replacement
         use "glepnir/galaxyline.nvim"
-        -- It's in the name
-        use "907th/vim-auto-save"
         -- Syntax highlighting
         use "nvim-treesitter/nvim-treesitter"
         use "nvim-treesitter/playground"
