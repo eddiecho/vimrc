@@ -11,7 +11,6 @@ require "plugins/statusline"
 require("colorizer").setup()
 
 -- lsp
-require "plugins/lspconfig"
 require "plugins/compe"
 
 local cmd = vim.cmd

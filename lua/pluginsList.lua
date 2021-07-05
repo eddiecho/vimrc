@@ -35,6 +35,17 @@ return require("packer").startup(
         use "onsails/lspkind-nvim"
         use "ray-x/lsp_signature.nvim"
         use "simrat39/rust-tools.nvim"
+        use {
+          "jose-elias-alvarez/nvim-lsp-ts-utils",
+          ft = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx"
+          },
+        }
         -- Auto completion
         use "hrsh7th/nvim-compe"
         -- Auto pair some stuff

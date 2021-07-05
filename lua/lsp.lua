@@ -1,3 +1,9 @@
+
+vim.cmd [[packadd nvim-lspconfig]]
+vim.cmd [[packadd nvim-compe]]
+
+local lsp_config = require'lspconfig'
+
 local lsp = {}
 
 function lsp.common_on_attach(client)
@@ -28,6 +34,12 @@ function lsp.common_on_attach(client)
     buf_set_keymap("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
     buf_set_keymap("n", "<space>q", "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", opts)
 
+end
+
+function lsp.root_dir(root_files)
+  return function(filename)
+    lsp_config.util.root_pattern(unpack(root_files))(filename) or lsp_config.util.path.dirname(filename)
+  end
 end
 
 return lsp
