@@ -1,9 +1,6 @@
-vim.cmd [[packadd nvim-lspconfig]]
-vim.cmd [[packadd nvim-compe]]
+local lsp = {}
 
-local nvim_lsp = require("lspconfig")
-
-function on_attach(client)
+function lsp.common_on_attach(client)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
     end
@@ -33,7 +30,4 @@ function on_attach(client)
 
 end
 
-local servers = {"tsserver", "cssls", "html", "clangd", "rust_analyzer"}
-for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {on_attach = on_attach}
-end
+return lsp
