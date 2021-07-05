@@ -34,6 +34,7 @@ return require("packer").startup(
         use "neovim/nvim-lspconfig"
         use "onsails/lspkind-nvim"
         use "ray-x/lsp_signature.nvim"
+        use "simrat39/rust-tools.nvim"
         -- Auto completion
         use "hrsh7th/nvim-compe"
         -- Auto pair some stuff
