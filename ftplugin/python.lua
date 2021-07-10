@@ -1,4 +1,5 @@
 local lsp_config = require'lspconfig'
+local lsp = require'lsp'
 
 local root_files = {
   "setup.py",
@@ -15,9 +16,7 @@ lsp_config.pyright.setup {
         "--stdio"
     },
     filetypes = { "python" },
-    root_dir = function(filename)
-      return lsp_config.util.root_pattern(unpack(root_files))(filename) or lsp_config.util.path.dirname(filename)
-    end,
+    root_dir = lsp.root_dir(root_files),
     on_attach = require'lsp'.common_on_attach,
     handlers = {
         ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic

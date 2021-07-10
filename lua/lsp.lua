@@ -2,6 +2,8 @@
 vim.cmd [[packadd nvim-lspconfig]]
 vim.cmd [[packadd nvim-compe]]
 
+vim.lsp.set_log_level('debug')
+
 local lsp_config = require'lspconfig'
 
 local lsp = {}
@@ -38,7 +40,8 @@ end
 
 function lsp.root_dir(root_files)
   return function(filename)
-    lsp_config.util.root_pattern(unpack(root_files))(filename) or lsp_config.util.path.dirname(filename)
+    print(filename)
+    lsp_config.util.root_pattern(unpack(root_files))(filename)
   end
 end
 

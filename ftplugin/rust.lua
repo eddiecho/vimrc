@@ -1,3 +1,29 @@
+local lsp = require"lsp"
+local util = require"lspconfig/util"
+
+local root_files = {
+  "Cargo.toml",
+  "rust-project.json"
+}
+
+local function rust_root_dir(fname)
+  local cargo_crate_dir = util.root_pattern "Cargo.toml"(fname)
+  local cmd = "cargo metadata --no-deps --format-version 1"
+  if cargo_crate_dir ~= nil then
+    cmd = cmd .. " --manifest-path" .. util.path.join(cargo_crate_dir, "Cargo.toml")
+  end
+
+  local cargo_metadata = vim.fn.system(cmd)
+  local cargo_workspace_dir = nil
+  if vim.v.shell_error == 0 then
+    cargo_workspace_dir = vim.fn.json_decode(cargo_metadata)["workspace_root"]
+  end
+
+  return cargo_workspace_dir
+    or cargo_crate_dir
+    or util.root_pattern "rust-project.json"(fname)
+end
+
 local opts = {
     tools = {
         -- automatically set inlay hints (type hints)
@@ -63,9 +89,12 @@ local opts = {
     -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
     server = {
         cmd = {"rust-analyzer"},
-        on_attach = require'lsp'.common_on_attach
+        on_attach = require'lsp'.common_on_attach,
+        filetypes = { "rust" },
+        root_dir = rust_root_dir,
     } -- rust-analyser options
 }
+
 require('rust-tools').setup(opts)
 
 --[[

@@ -33,7 +33,7 @@ require("telescope").setup {
           "build/.*"
         },
         generic_sorter = require "telescope.sorters".get_generic_fuzzy_sorter,
-        shorten_path = true,
+        path_display = true,
         winblend = 0,
         border = {},
         borderchars = {"─", "│", "─", "│", "╭", "╮", "╯", "╰"},
